@@ -9,7 +9,7 @@ screen_height = 500
 win = pygame.display.set_mode((screen_width,screen_height)) # creates the window
 pygame.display.set_caption('Orc Blaster V2') # This creates the caption on the top of the window
 
-title_orc = pygame.transform.scale((pygame.image.load("space_jam_files/orc.xcf")),(300,200)) # static image on main menu screen
+title_orc = pygame.transform.scale((pygame.image.load("assets/orc.xcf")),(300,200)) # static image on main menu screen
 
 settings_active = False # placeholder for what will be used to change to the settings menu
   
@@ -25,11 +25,11 @@ class menu_tab: # Creates the menu text
         self.rect = pygame.Rect(self.x-7,self.y+5,205,40  ) #instead of a border fot the black rect, I made a slightly larger blue rect behind it
         pygame.draw.rect(win,(0,0,0),self.rect)
 
-        font = pygame.font.Font('space_jam_files/Audiowide-Regular.ttf',25)
+        font = pygame.font.Font('assets/Audiowide-Regular.ttf',25)
         text = font.render(self.text,False,'White')
         win.blit(text,(self.x,self.y+5))
 
-        x_img = (pygame.image.load("space_jam_files/X_post.xcf")) # X appears when mouse hovers over each tab
+        x_img = (pygame.image.load("assets/X_post.xcf")) # X appears when mouse hovers over each tab
         hover_x = pygame.transform.scale(x_img,(25,37))
 
         if self.rect.collidepoint(pygame.mouse.get_pos()):
@@ -44,7 +44,7 @@ class main_text: # for the main menu title text, settings "Speed is" text, game 
     def display(self):
         # white_rect = pygame.Rect(self.x,self.y+15,260,30) # I may decide to use this backround/rects for the main text
         # pygame.draw.rect(win,"white",white_rect)
-        font = pygame.font.Font('space_jam_files/Audiowide-Regular.ttf',40)
+        font = pygame.font.Font('assets/Audiowide-Regular.ttf',40)
         text = font.render(self.text,False,"white")
         win.blit(text,(self.x,self.y+5))
 
@@ -76,9 +76,9 @@ class background():                 # class creates backround which moves downwa
 
 # this class^ which generates a moving background, is very convenient, as the game is developed, levels will be made--
 # --which each are located on a specific planet or part of space, requiring a unique backround
-menu_bg= background('space_jam_files/black_bg.jpg',0.5)
-game_active_bg = background('space_jam_files/black_bg.jpg',2) # simply choose image and speed and you have your background, automatically fitted to the screen, speed = 0 for still image
-pause_bg = background('space_jam_files/black_bg.jpg',0)
+menu_bg= background('assets/black_bg.jpg',0.5)
+game_active_bg = background('assets/black_bg.jpg',2) # simply choose image and speed and you have your background, automatically fitted to the screen, speed = 0 for still image
+pause_bg = background('assets/black_bg.jpg',0)
 
 class entity(): # having an entity class which player and orc class will inherit from clears up code, and is better structured and optimized                              
     def __init__(self,x,y,width,height,health):
@@ -263,7 +263,7 @@ while True:
         settings_tab.display()
         quit_tab.display()
         # Orc Blaster text and orc image on right side
-        title_card = pygame.transform.scale(pygame.image.load("space_jam_files/orc_blaster_title.png"),(250,280))
+        title_card = pygame.transform.scale(pygame.image.load("assets/orc_blaster_title.png"),(250,280))
         win.blit(title_card,(480,70))
 
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -283,17 +283,17 @@ while True:
         if sp_1 == True:
             sp_2 = False
             game_active_bg.display()
-            ga_sp_1.draw('space_jam_files\/spaceship.png')
+            ga_sp_1.draw('assets/spaceship.png')
             ga_sp_1.movement()
             ga_sp_1.attack()
             ga_sp_1.draw_sp_health_bar()
         if sp_2 == True:
             sp_1 = False
-            ga_sp_2.draw('space_jam_files\/sp_2.xcf')
+            ga_sp_2.draw('assets/sp_2.xcf')
             ga_sp_2.movement()
             ga_sp_2.attack()
             ga_sp_2.draw_sp_health_bar()
-        orc.draw('space_jam_files\/orc.xcf')
+        orc.draw('assets/orc.xcf')
         orc.move()
         orc.attack()
         orc.draw_orc_health_bar() 
@@ -318,10 +318,10 @@ while True:
         #     speed_150_text.display()
         if sp_1 == True:
             sp_2 = False
-            settings_sp_1.draw('space_jam_files\/spaceship.png')
+            settings_sp_1.draw('assets/spaceship.png')
         elif sp_2 == True:
             sp_1 = False
-            settings_sp_2.draw('space_jam_files\/sp_2.xcf')
+            settings_sp_2.draw('assets/sp_2.xcf')
         if event.type == pygame.MOUSEBUTTONDOWN: # goes back to the main menu
             if settings_back_tab.rect.collidepoint(pygame.mouse.get_pos()):
                 menu_active = True
